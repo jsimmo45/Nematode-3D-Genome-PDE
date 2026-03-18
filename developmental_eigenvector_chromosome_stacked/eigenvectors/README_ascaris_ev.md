@@ -1,0 +1,96 @@
+# ascaris_eigenvector
+
+Plot eigenvector 1 (EV1) compartment profiles across *Ascaris* developmental
+stages for individual chromosomes.  Each stage is stacked vertically with a
+shared x-axis, allowing visual comparison of compartment dynamics from germ
+cells through embryogenesis.
+
+## Overview
+
+`plot_ev1_single.py` generates a vertically stacked figure where each panel
+shows the EV1 trace for one developmental stage along a given chromosome.
+Eliminated DNA regions are shaded red, and post-PDE stages have their traces
+broken at eliminated loci.
+
+Key features:
+- **Pre-PDE stages** (testis, ovary, 0hr) are plotted as continuous traces on
+  germline coordinates.
+- **Post-PDE stages** (48hr, 60hr, 5day, 10day) are mapped back to germline
+  coordinates via the pre-to-post coordinate mapping, with gaps at eliminated
+  regions.
+- **EV1 sign correction**: since PCA eigenvector sign is arbitrary,
+  per-chromosome/per-stage flips are configured in the `FLIP_STAGES` dictionary
+  at the top of the script.
+- **Symmetric y-axis** centered at 0, auto-scaled across all stages.
+
+## Dependencies
+
+```
+numpy
+matplotlib
+```
+
+## Input files
+
+| File | Description |
+|------|-------------|
+| `data/AG_v50_eliminated_strict.bed` | Ascaris eliminated DNA regions (BED, shared with other analyses) |
+| `data/as_v50_prepde_to_postpde_coordinates.bed` | Pre-PDE → post-PDE coordinate mapping: `pre_chr  start  end  post_chr` |
+| `data/AG_v50_chrom_sizes.txt` | Ascaris chromosome sizes: `chr  length` |
+| `eigenvectors/prepde/*.matrix.eigenvector` | Pre-PDE eigenvector files (FANC format: `chr  start  end  eigenvector`) |
+| `eigenvectors/postpde/*.matrix.eigenvector` | Post-PDE eigenvector files (same format) |
+
+Eigenvector files are derived from ICE-normalized Hi-C matrices using
+[FAN-C](https://fan-c.readthedocs.io/) (`fanc compartments`).  Hi-C matrices
+are available from GEO under accession GSEXXXXXX.
+
+## Usage
+
+```bash
+python plot_ev1_single.py \
+    --chromosomes chr01 chrX1 \
+    --elimination-bed data/AG_v50_eliminated_strict.bed \
+    --mapping-bed data/as_v50_prepde_to_postpde_coordinates.bed \
+    --chrom-sizes data/AG_v50_chrom_sizes.txt \
+    --pre-dir eigenvectors/prepde \
+    --post-dir eigenvectors/postpde \
+    --output-dir results/
+```
+
+## Parameters
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--chromosomes` | `chr01 chrX1` | Space-separated list of chromosomes to plot |
+| `--elimination-bed` | required | BED file of eliminated regions |
+| `--mapping-bed` | required | Pre-to-post PDE coordinate mapping |
+| `--chrom-sizes` | required | Chromosome sizes file |
+| `--pre-dir` | `eigenvectors/prepde` | Directory with pre-PDE eigenvector files |
+| `--post-dir` | `eigenvectors/postpde` | Directory with post-PDE eigenvector files |
+| `--output-dir` | `results` | Output directory |
+
+## In-script configuration
+
+These are edited directly in the script (top of file):
+
+**`STAGES_TO_PLOT`** — ordered list of stage prefixes to include.  The script
+searches `--pre-dir` and `--post-dir` for files matching each prefix via glob.
+
+**`FLIP_STAGES`** — dict mapping chromosome names to lists of stages whose EV1
+values should be sign-flipped.  This ensures compartment A/B direction is
+visually consistent across stages.
+
+**`PUB_SETTINGS`** — dict of visual parameters (line width, font sizes, figure
+dimensions, etc.).
+
+## Outputs
+
+Per chromosome:
+- `eigen_{chr}_stacked.png` — 600 DPI raster
+- `eigen_{chr}_stacked.svg` — editable vector for Illustrator
+
+## Figure mapping
+
+| Figure | Chromosomes | Notes |
+|--------|------------|-------|
+| Fig. XD | `chr01`, `chrX1` | 7 stages, testis through 10-day adult |
