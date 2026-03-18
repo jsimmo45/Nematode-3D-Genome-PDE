@@ -60,8 +60,11 @@ Four reference files are included in this repository under `data/`:
 | `data/20000/pu_v2_postpde_abs_20kb` | HiC-Pro abs.bed for the somatic genome assembly (20 kb resolution) |
 | `data/pu_v2_germ_to_soma_mapping.bed` | Germline-to-somatic chromosome mapping: `germ_chr  start  end  soma_chr` |
 
-Hi-C matrices (ICE-normalized, HiC-Pro sparse format) are available from GEO
-under accession GSEXXXXXX.  The script expects them at
+Hi-C matrices used by this script are ICE-normalized sparse matrices generated
+by [HiC-Pro](https://github.com/nservant/HiC-Pro) at 20 kb resolution.  Raw
+sequencing reads are available from SRA under accession SRPXXXXXX.  To
+regenerate matrices, run HiC-Pro with the Parascaris v2 germline reference
+genome, then apply ICE balancing.  The script expects matrices at
 `matrix_files_{res}/prepde/` and `matrix_files_{res}/postpde/` with the naming
 pattern `pu_{timepoint}_{resolution}_iced.matrix` (see `get_matrix_files()` to
 modify).
