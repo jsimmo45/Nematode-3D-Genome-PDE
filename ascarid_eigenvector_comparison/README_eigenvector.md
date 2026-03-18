@@ -1,0 +1,127 @@
+# eigenvector_comparison
+
+Compare Hi-C compartment eigenvector 1 (EV1) profiles between *Ascaris* and
+*Parascaris* across their shared germline chromosome.  Produces a multi-row
+figure with paired panels (Ascaris on top, Parascaris on bottom), eliminated DNA
+regions shaded in red, and per-chromosome Pearson correlations annotated.
+
+## Overview
+
+`plot_ev1_multirow.py` maps post-PDE somatic eigenvector data from both species
+back onto the Parascaris germline coordinate system so they can be directly
+compared.  This involves:
+
+- **Parascaris**: post-PDE somatic EV1 values are mapped to germline coordinates
+  using the germline-to-somatic mapping file, with EV1 sign corrections applied
+  per chromosome.
+- **Ascaris**: EV1 values are first mapped to their Parascaris chromosome
+  orthologs (with orientation reversal where synteny is inverted), then placed
+  on the germline coordinate axis through the same germline-to-somatic mapping.
+- **Eliminated regions** are masked from the EV1 traces and shaded in red.
+- **Pearson correlations** are calculated per orthologous chromosome pair using
+  interpolation to a common coordinate grid.
+
+Rows are defined by groups of somatic chromosomes and plotted with width
+proportional to their genomic span.
+
+## Dependencies
+
+```
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+```
+
+## Input files
+
+| File | Description |
+|------|-------------|
+| Parascaris eigenvector (positional arg) | FANC format: `chr  start  end  eigenvector` (e.g., 72hr post-PDE, 100kb resolution) |
+| `--as-eigenvector` | Ascaris eigenvector file (same format, e.g., 10-day adult, 100kb resolution) |
+| `data/pu_v2_eliminated.bed` | Parascaris eliminated DNA regions (BED3) |
+| `data/AG_v50_eliminated_strict.bed` | Ascaris eliminated DNA regions (BED4, strict set) |
+| `data/pu_v2_germ_to_soma_mapping.bed` | Germline → somatic coordinate mapping (shared with other analyses) |
+| `data/as_to_pu_chrom_order.txt` | Ascaris → Parascaris chromosome orthology: `as_chr  pu_chr  orientation` |
+| `data/flip_or_not.txt` | Per-chromosome EV1 sign correction: `pu_chr  flip/correct  as_chr_short  flip/correct` |
+
+Eigenvector files are derived from ICE-normalized Hi-C matrices using
+[FAN-C](https://fan-c.readthedocs.io/) (`fanc compartments`).  The Hi-C
+matrices are available from GEO under accession GSEXXXXXX.
+
+## Usage
+
+```bash
+python plot_ev1_multirow.py \
+    eigenvectors/pu_72hr_iced_100kb_ev1.matrix.eigenvector \
+    --as-eigenvector eigenvectors/as_10day_iced_100kb_ev1.matrix.eigenvector \
+    --elimination-bed data/pu_v2_eliminated.bed \
+    --as-elimination-bed data/AG_v50_eliminated_strict.bed \
+    --germ-soma-mapping data/pu_v2_germ_to_soma_mapping.bed \
+    --as-pu-mapping data/as_to_pu_chrom_order.txt \
+    --flip-file data/flip_or_not.txt \
+    --chromosome chrX \
+    --row-chromosomes "chr01-chr08;chrX1-chrX9;chr09-chr16;chr17-chr27" \
+    --smooth --window 3 \
+    --y-min -0.3 --y-max 0.3 \
+    --linewidth 2.5 \
+    --pu-color "#0066CC" --as-color "red" \
+    --output multirow_comparison \
+    --dpi 300
+```
+
+## Parameters
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--chromosome` | chrX | Germline chromosome to plot |
+| `--row-chromosomes` | — | Define rows by somatic chromosome groups (semicolon-separated; see below) |
+| `--row-ranges` | `0-45,45-100,...` | Alternative: define rows by germline Mb ranges (comma-separated) |
+| `--smooth` / `--no-smooth` | smooth | Apply rolling mean smoothing to traces |
+| `--window` | 5 | Smoothing window size (in bins) |
+| `--y-min` / `--y-max` | -3.0 / 3.0 | Y-axis range for EV1 values |
+| `--linewidth` | 2.5 | Trace line width |
+| `--pu-color` | `#0066CC` | Parascaris trace color |
+| `--as-color` | `#FF8C00` | Ascaris trace color |
+| `--dpi` | 300 | Output PNG resolution |
+
+### Row definition format (`--row-chromosomes`)
+
+Rows are separated by semicolons.  Within a row:
+- Ranges: `chr01-chr08` (all chromosomes from chr01 through chr08)
+- Lists: `chr01,chr02,chr03` (specific chromosomes)
+- Mixed: `chr01-chr04;chr05,chr06,chr07;chr08`
+
+Each row's panel width is proportional to its total genomic span.
+
+## Outputs
+
+Written to `ev1_multirow_output/`:
+
+- `{prefix}_{chromosome}_multirow.png` — raster figure
+- `{prefix}_{chromosome}_multirow.svg` — editable vector figure
+
+## Reference file descriptions
+
+**`as_to_pu_chrom_order.txt`** — Maps each Ascaris somatic chromosome to its
+Parascaris ortholog with syntenic orientation.  Three columns: Ascaris
+chromosome, Parascaris chromosome, `normal` or `reverse`.  `reverse` means
+the Ascaris chromosome is plotted in reversed orientation to align with
+Parascaris.
+
+**`flip_or_not.txt`** — Controls EV1 sign (y-axis direction) per chromosome.
+EV1 sign is arbitrary in PCA; this file ensures that compartment A/B
+assignments are consistent between chromosomes and species.  Four columns:
+Parascaris chromosome, `flip`/`correct`, Ascaris chromosome (short name),
+`flip`/`correct`.
+
+**`pu_v2_eliminated.bed`** / **`AG_v50_eliminated_strict.bed`** — BED files
+marking genomic regions that are eliminated during PDE.  These regions are
+shaded red in the figure and masked from EV1 traces.
+
+## Figure mapping
+
+| Figure | Row layout | Flags | Notes |
+|--------|-----------|-------|-------|
+| Fig. XC | `chr01-chr08;chrX1-chrX9;chr09-chr16;chr17-chr27` | `--smooth --window 3 --y-min -0.3 --y-max 0.3` | 4-row layout, full genome |
