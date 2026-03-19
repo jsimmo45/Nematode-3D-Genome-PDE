@@ -1,6 +1,6 @@
 # Ascaris and Parascaris Hi-C Analysis
 
-Code and reference files for [Author et al. (2026) Journal Name].
+Code and reference files for [Simmons et al. (2026) Journal TBD].
 
 Hi-C analysis of chromatin interactions during programmed DNA elimination in
 *Ascaris suum* and *Parascaris univalens*.
