@@ -32,7 +32,7 @@ matplotlib
 | File | In repo? | Description |
 |------|----------|-------------|
 | HiC-Pro bins BED | Yes (shared) | `AG_10kb_hicpro_bins.bed` etc. in `data/` |
-| ICE-normalized matrices | No | HiC-Pro sparse matrices; regenerate from SRA (SRPXXXXXX) |
+| ICE-normalized matrices | No | HiC-Pro sparse matrices; regenerate from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626) |
 
 ## Usage
 
@@ -87,4 +87,4 @@ python plot_hic_subregion.py \
 
 | Figure | Coords | vmax | Notes |
 |--------|--------|------|-------|
-| Fig. XM | chr01 vs chr06, 5Mb windows | p99 | 10kb resolution, 5day |
+| Fig. 1D | chr01 vs chr06, 5Mb windows | p99 | 10kb resolution, 2-4 cell |
