@@ -41,8 +41,7 @@ scipy
 | Insulation bedgraphs | No | FAN-C insulation scores in `insulation_scores/{prepde,postpde_mapped}/` |
 
 Insulation scores are computed by [FAN-C](https://fan-c.readthedocs.io/)
-(`fanc insulation`) from Hi-C matrices.  Raw reads are available from SRA
-under accession SRPXXXXXX.
+(`fanc insulation`) from Hi-C matrices.  Raw reads are available from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626).
 
 ## Usage
 
@@ -88,4 +87,4 @@ Summary:
 
 | Figure | Stages | Y-limits | Notes |
 |--------|--------|----------|-------|
-| Fig. XJ | teste through 10day | -2 to 1 | Floor values removed |
+| Fig. 3C, 3D | teste through 10day | -2 to 1 | Floor values removed |
