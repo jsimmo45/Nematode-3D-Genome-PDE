@@ -33,7 +33,7 @@ scipy
 | Insulation bedgraphs | No | FAN-C insulation scores in prepde/ and postpde/ directories |
 
 Insulation scores are computed by FAN-C (`fanc insulation`) from Hi-C
-matrices.  Raw reads on SRA (SRPXXXXXX).
+matrices.  Raw reads on GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626).
 
 ## Usage
 
@@ -72,4 +72,4 @@ python plot_insulation_genome.py \
 
 | Figure | Samples | Smoothing | Notes |
 |--------|---------|-----------|-------|
-| Fig. XN | 1cell, 2-4cell, 4-8cell, 32-64cell, L1 | 20-bin | All chromosomes, y: -2 to 1 |
+| Fig. 3C,D | 1cell, 2-4cell, 4-8cell, 32-64cell, L1 | 20-bin | All chromosomes, y: -2 to 1 |
