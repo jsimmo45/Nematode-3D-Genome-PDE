@@ -38,7 +38,7 @@ scipy
 The eigenvector file is included in the repository under
 `data/eigenvectors/ascaris/`.  Binned omics signal tracks (`.mean0.10kb.bg`
 files) are included in this repository under `omics_data/`.  Raw sequencing
-reads are available from SRA under accession SRPXXXXXX.
+reads are available from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626).
 
 Expected directory layout under `--base-dir`:
 
@@ -104,4 +104,4 @@ Summary:
 
 | Figure | Eigenvector | Threshold | Notes |
 |--------|-----------|-----------|-------|
-| Fig. XF | `as_5day_iced_100kb` | 0.15 | 8 datasets, no signal filter |
+| Fig. 5B | `as_5day_iced_100kb` | 0.15 | 8 datasets, no signal filter |
