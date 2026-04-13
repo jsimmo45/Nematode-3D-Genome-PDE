@@ -62,7 +62,7 @@ Four reference files are included in this repository under `data/`:
 
 Hi-C matrices used by this script are ICE-normalized sparse matrices generated
 by [HiC-Pro](https://github.com/nservant/HiC-Pro) at 20 kb resolution.  Raw
-sequencing reads are available from SRA under accession SRPXXXXXX.  To
+sequencing reads are available from [GSE315650](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE315650).  To
 regenerate matrices, run HiC-Pro with the Parascaris v2 germline reference
 genome, then apply ICE balancing.  The script expects matrices at
 `matrix_files_{res}/prepde/` and `matrix_files_{res}/postpde/` with the naming
@@ -134,4 +134,4 @@ Adobe Illustrator.
 
 | Figure | Regions file | Flags | Notes |
 |--------|-------------|-------|-------|
-| Fig. XA | `interacting_regions_100kb.bed` | `--oe-normalize --log2-oe --ref-timepoint 17hr` | |
+| Fig. 6D, 6E | `interacting_regions_100kb.bed` | `--oe-normalize --log2-oe --ref-timepoint 17hr` | |
