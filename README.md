@@ -1,6 +1,8 @@
 # Ascaris and Parascaris Hi-C Analysis
 
-Code and reference files for Simmons et al. (2026) bioRxiv doi:10.1101/2025.10.23.684251.
+Code and reference files for
+[Simmons et al. (2026)](https://www.biorxiv.org/content/10.1101/2025.10.23.684251v2)
+*Spatial genome organization in nematodes with programmed DNA elimination*. bioRxiv.
 
 Hi-C analysis of chromatin interactions during programmed DNA elimination in
 *Ascaris suum* and *Parascaris univalens*.
