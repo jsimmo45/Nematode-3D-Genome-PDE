@@ -71,4 +71,4 @@ python plot_eigenvector_genome.py \
 
 | Figure | Samples | Smoothing | Notes |
 |--------|---------|-----------|-------|
-| Fig. XO | 1cell through L1 | 3-bin | y: -0.3 to 0.3, sign-corrected |
+| Fig. S7 | 1cell through L1 | 3-bin | y: -0.3 to 0.3, sign-corrected |
