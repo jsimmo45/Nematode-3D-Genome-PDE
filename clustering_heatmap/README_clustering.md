@@ -42,7 +42,7 @@ scipy
 |------|----------|-------------|
 | `data/chrom_order_pre.txt` | Yes | Chromosome display order for pre-PDE (one name per line) |
 | `data/chrom_order_post.txt` | Yes | Chromosome display order for post-PDE |
-| allValidPairs files | No | HiC-Pro output; regenerate from SRA reads (SRPXXXXXX) |
+| allValidPairs files | No | HiC-Pro output; regenerate from GEO [GSE314626] (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626) (Ascaris). |
 
 allValidPairs files are large intermediate outputs from HiC-Pro (column 2 =
 query chromosome, column 5 = target chromosome).  Raw sequencing reads are
@@ -107,4 +107,4 @@ Color scale is shared across all samples for direct visual comparison.
 
 | Figure | Samples | Flags | Notes |
 |--------|---------|-------|-------|
-| Fig. XG | 1cell, 48hr, 60hr (pre); 5day, 10day (post) | `--mccord --thresh 2.0 --hide_row_dendrogram` | Global color scale |
+| Fig. 4C | 1cell, 48hr, 60hr (pre); 5day, 10day (post) | `--mccord --thresh 2.0 --hide_row_dendrogram` | Global color scale |
