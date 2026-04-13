@@ -112,5 +112,5 @@ Additional flags for `saddle_plots_full.py`:
 
 | Figure | Script | Notes |
 |--------|--------|-------|
-| Fig. XP | `saddle_plots.py` | Saddle plots, 20 quantiles, all stages |
-| Fig. XQ | `saddle_plots_full.py` | Strength decomposition, switching |
+| Fig. 5C | `saddle_plots.py` | Saddle plots, 20 quantiles, all stages |
+| Fig. S8A, S8B, S8C | `saddle_plots_full.py` | Strength decomposition, switching |
