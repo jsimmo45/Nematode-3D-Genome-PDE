@@ -42,7 +42,7 @@ scipy
 |------|----------|-------------|
 | `data/chrom_order_pre.txt` | Yes | Chromosome display order for pre-PDE (one name per line) |
 | `data/chrom_order_post.txt` | Yes | Chromosome display order for post-PDE |
-| allValidPairs files | No | HiC-Pro output; regenerate from GEO [GSE314626] (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626) (Ascaris). |
+| allValidPairs files | No | HiC-Pro output; regenerate from GEO [GSE314626] (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626). |
 
 allValidPairs files are large intermediate outputs from HiC-Pro (column 2 =
 query chromosome, column 5 = target chromosome).  Raw sequencing reads are
