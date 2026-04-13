@@ -39,7 +39,7 @@ scipy
 | `data/cbr_v50_200kb_split_internal.bed` | Yes | CBR windows BED (chr start end name type) |
 | `data/AG_10kb_hicpro_bins.bed` | Yes | HiC-Pro bins file for 10kb resolution |
 | `data/AG_20kb_hicpro_bins.bed` | Yes | HiC-Pro bins file for 20kb resolution |
-| ICE-normalized matrices | No | HiC-Pro sparse matrices; regenerate from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626) (Ascaris). |
+| ICE-normalized matrices | No | HiC-Pro sparse matrices; regenerate from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626). |
 
 ## Usage
 
