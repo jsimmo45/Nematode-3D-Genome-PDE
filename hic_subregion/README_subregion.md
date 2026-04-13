@@ -87,4 +87,4 @@ python plot_hic_subregion.py \
 
 | Figure | Coords | vmax | Notes |
 |--------|--------|------|-------|
-| Fig. 1D | chr01 vs chr06, 5Mb windows | p99 | 10kb resolution, 2-4 cell |
+| Fig. 1D | chr01 vs chr06, 5Mb windows | p99 | 10kb resolution, 1cell |
