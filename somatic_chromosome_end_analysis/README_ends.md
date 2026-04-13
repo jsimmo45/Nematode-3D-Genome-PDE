@@ -42,7 +42,7 @@ scipy
 
 The break-region BED files are included in the repository.  Omics bedgraph
 files are binned signal tracks generated from sequencing alignments.  Raw reads
-are available from SRA under accession SRPXXXXXX.
+are available from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626).
 
 ## Usage
 
@@ -85,4 +85,4 @@ Per window size:
 
 | Figure | Window sizes | Notes |
 |--------|-------------|-------|
-| Fig. XI | 100kb, 250kb, 500kb, 1000kb | Points + SEM, 5 stages |
+| Fig. 4A, S6 | 100kb, 250kb, 500kb, 1000kb | Points + SEM, 5 stages |
