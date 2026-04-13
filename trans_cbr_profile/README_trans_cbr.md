@@ -33,7 +33,7 @@ matplotlib
 |------|----------|-------------|
 | `data/AG_v50_chrom.bed` | Yes | Chromosome sizes BED for the pre-PDE genome |
 | `data/cbr_v50_500kb_windows_cbr.bed` | Yes | CBR positions (chr start end orientation name type) |
-| Trans allValidPairs | No | Trans-only HiC-Pro pairs files; regenerate from SRA (SRPXXXXXX) |
+| Trans allValidPairs | No | Trans-only HiC-Pro pairs files; regenerate from GEO [GSE314626](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE314626) |
 
 ## Usage
 
@@ -94,4 +94,4 @@ In `--output_dir`:
 
 | Figure | Flags | Notes |
 |--------|-------|-------|
-| Fig. XK | `--component_type end --components teste --flank 500000` | End CBRs, 5kb bins |
+| Fig. 3A, 3B, S4 | `--component_type end --components teste --flank 500000` | End CBRs, 5kb bins |
