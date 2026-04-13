@@ -44,7 +44,7 @@ Three reference files are needed (shared with `interaction_scoring/`):
 
 Hi-C matrices used by this script are ICE-normalized sparse matrices generated
 by [HiC-Pro](https://github.com/nservant/HiC-Pro).  Raw sequencing reads are
-available from SRA under accession SRPXXXXXX.  To regenerate matrices, run
+available from [GSE315650](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE315650).  To regenerate matrices, run
 HiC-Pro with the Parascaris v2 germline reference genome, then apply ICE
 balancing.  The script expects them at `matrix_files_{res}/prepde/` and
 `matrix_files_{res}/postpde/` with the naming pattern
@@ -115,4 +115,4 @@ Files are written to `--output-dir` with the naming pattern
 
 | Figure | Region | Resolution | Flags | Notes |
 |--------|--------|-----------|-------|-------|
-| Fig. XB | `chrX7-chrX9` | 40kb | `--plot-type both --log2-obsexp --vmax 15 --vmax-obsexp 2.5` | |
+| Fig. 6C | `chrX7-chrX9` | 40kb | `--plot-type both --log2-obsexp --vmax 15 --vmax-obsexp 2.5` | |
